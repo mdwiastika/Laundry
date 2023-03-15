@@ -43,7 +43,7 @@
                background: linear-gradient(#1845ad,
                        #23a2f6);
                left: -80px;
-               top: -80px;
+               top: 350px;
            }
 
            .shape:last-child {
@@ -51,7 +51,7 @@
                        #ff512f,
                        #f09819);
                right: -30px;
-               bottom: -80px;
+               bottom: -150px;
            }
 
            form {
@@ -105,7 +105,9 @@
                font-size: 14px;
                font-weight: 300;
            }
-
+        option{
+            background-color: grey;
+        }
            ::placeholder {
                color: #e5e5e5;
            }
@@ -169,7 +171,7 @@
            <input required type="text" placeholder="Masukkan Username" name="username" id="username">
 
            <label for="alamat">Alamat</label>
-           <textarea name="alamat" id="alamat" required cols="30" rows="10"></textarea>
+           <textarea name="alamat" id="alamat" placeholder="Masukkan Alamat" required cols="30" rows="10"></textarea>
 
            <label for="tlp">Telepon</label>
            <input required type="text" placeholder="Email or Phone" name="tlp" id="tlp">
