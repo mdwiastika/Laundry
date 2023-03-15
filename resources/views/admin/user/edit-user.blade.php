@@ -60,7 +60,7 @@
                                 <input class="form-control" type="password" placeholder="Password" name="password"
                                     id="password">
                             </div>
-                            <button type="submit" class="btn btn-warning"><i class="fa fa-plus"></i> Edit User</button>
+                            <button type="submit" class="btn btn-warning"><i class="fa fa-edit"></i> Edit User</button>
                             <a href="{{ route('user.index') }}" class="btn btn-info"><i class="fa fa-reply"></i>
                                 Kembali</a>
                         </div>

@@ -79,6 +79,7 @@
                                     name="password" id="password">
                             </div>
                             <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Member</button>
+                            <a href="{{ route('member.index') }}" class="btn btn-info"><i class="fa fa-reply"></i> Kembali</a>
                         </div>
                     </form>
                 </div>

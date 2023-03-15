@@ -77,10 +77,12 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
+        $outlets = Outlet::all();
         return view('admin.member.show-member', [
             'title' => 'Laundry | Show Member',
             'active' => 'form',
             'member' => $member,
+            'outlets' => $outlets,
         ]);
     }
 
@@ -89,7 +91,13 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        $outlets = Outlet::all();
+        return view('admin.member.edit-member', [
+            'title' => 'Laundry | Form Edit Member',
+            'active' => 'form',
+            'member' => $member,
+            'outlets' => $outlets,
+        ]);
     }
 
     /**
@@ -97,7 +105,34 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $validatedUser = $request->validate([
+                'nama' => 'required',
+                'username' => $member->user->username == $request->username ? 'required' : 'required|unique:users,username',
+                'email' => $member->user->email == $request->email ? 'required' : 'required|unique:users',
+                'id_outlet' => 'required',
+            ]);
+            if ($request->password) {
+                $validatedUser['password'] = Hash::make($request->password);
+            }
+            $validatedUser['role'] = 'member';
+            $validatedMember = $request->validate([
+                'nama' => 'required',
+                'alamat' => 'required',
+                'jenis_kelamin' => 'required',
+                'tlp' => 'required',
+                'keterangan' => 'required',
+            ]);
+            $user = User::where('id', $member->id_user)->first();
+            $user->update($validatedUser);
+            $member->update($validatedMember);
+            DB::commit();
+            return redirect()->route('member.index')->with('success', 'Sukses Edit Member');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
 
     /**
@@ -108,7 +143,6 @@ class MemberController extends Controller
         try {
             $user = User::where('id', $member->id_user)->first();
             $user->delete();
-            $member->delete();
             return redirect()->back()->with('success', 'Sukses Delete User');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
