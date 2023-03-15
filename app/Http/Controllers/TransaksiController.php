@@ -12,7 +12,12 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        $transaksis = Transaksi::latest()->get();
+        return view('admin.transaksi.transaksi', [
+            'title' => 'Laundry | Table Transaksi',
+            'active' => 'table',
+            'transaksis' => $transaksis,
+        ]);
     }
 
     /**
