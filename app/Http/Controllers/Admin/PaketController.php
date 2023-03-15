@@ -116,6 +116,7 @@ class PaketController extends Controller
     public function destroy(Paket $paket)
     {
         try {
+            // hapus
             Storage::delete($paket->gambar);
             $paket->delete();
             return redirect()->route('paket.index')->with('success', 'Sukses Delete Paket');
