@@ -41,4 +41,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('/transaksi', TransaksiController::class)->middleware('transaksi_ok');
     Route::get('/laporan-transaksi', [LaporanController::class, 'index'])->name('laporan')->middleware('dashboard_ok');
     Route::get('/home')->name('home', [HomepageController::class, 'index']);
+    Route::get('/get-paket-by-member/{id_member}', TransaksiController::class, 'getPaket');
 });

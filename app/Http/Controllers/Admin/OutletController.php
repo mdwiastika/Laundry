@@ -13,7 +13,12 @@ class OutletController extends Controller
      */
     public function index()
     {
-        //
+        $outlets = Outlet::latest()->get();
+        return view('admin.outlet.outlet', [
+            'title' => 'Laundry | Table Outlet',
+            'active' => 'table',
+            'outlets' => $outlets,
+        ]);
     }
 
     /**
@@ -21,7 +26,10 @@ class OutletController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.outlet.create-outlet', [
+            'title' => 'Laundry | Form Create Outlet',
+            'active' => 'form',
+        ]);
     }
 
     /**
@@ -29,7 +37,17 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+                'nama' => 'required|unique:outlets,nama',
+                'alamat' => 'required',
+                'tlp' => 'required',
+            ]);
+            Outlet::create($validatedData);
+            return redirect()->route('outlet.index')->with('success', 'Sukses Create Outlet');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
 
     /**
@@ -37,7 +55,11 @@ class OutletController extends Controller
      */
     public function show(Outlet $outlet)
     {
-        //
+        return view('admin.outlet.show-outlet', [
+            'title' => 'Laundry | Form Edit Outlet',
+            'active' => 'form',
+            'outlet' => $outlet,
+        ]);
     }
 
     /**
@@ -45,7 +67,11 @@ class OutletController extends Controller
      */
     public function edit(Outlet $outlet)
     {
-        //
+        return view('admin.outlet.edit-outlet', [
+            'title' => 'Laundry | Form Edit Outlet',
+            'active' => 'form',
+            'outlet' => $outlet,
+        ]);
     }
 
     /**
@@ -53,7 +79,17 @@ class OutletController extends Controller
      */
     public function update(Request $request, Outlet $outlet)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+                'nama' => $request->nama == $outlet->nama ? 'required' : 'required|unique:outlets,nama',
+                'alamat' => 'required',
+                'tlp' => 'required',
+            ]);
+            $outlet->update($validatedData);
+            return redirect()->route('outlet.index')->with('success', 'Sukses Update Outlet');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
 
     /**
@@ -61,6 +97,11 @@ class OutletController extends Controller
      */
     public function destroy(Outlet $outlet)
     {
-        //
+        try {
+            $outlet->delete();
+            return redirect()->route('outlet.index')->with('success', 'Sukses Delete Outlet');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
 }
