@@ -56,7 +56,7 @@ class OutletController extends Controller
     public function show(Outlet $outlet)
     {
         return view('admin.outlet.show-outlet', [
-            'title' => 'Laundry | Form Edit Outlet',
+            'title' => 'Laundry | Show Outlet',
             'active' => 'form',
             'outlet' => $outlet,
         ]);

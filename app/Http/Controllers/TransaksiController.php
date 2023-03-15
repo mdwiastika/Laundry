@@ -62,4 +62,7 @@ class TransaksiController extends Controller
     {
         //
     }
+    public function getPaket($id_member)
+    {
+    }
 }

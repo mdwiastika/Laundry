@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         ]);
         Outlet::factory(10)->create();
         User::factory(15)->create();
-        Paket::factory(20)->create();
 
         // \App\Models\User::factory(10)->create();
 

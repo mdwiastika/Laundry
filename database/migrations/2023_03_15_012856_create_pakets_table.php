@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('harga');
             $table->foreignId('id_outlet')->constrained('outlets', 'id')->cascadeOnDelete();
             $table->enum('jenis', ['kiloan', 'selimut', 'bed_cover', 'kaos', 'lain']);
+            $table->string('gambar');
             $table->timestamps();
         });
     }
