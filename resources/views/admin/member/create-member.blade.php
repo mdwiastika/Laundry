@@ -14,7 +14,7 @@
                     <div class="panel-heading">
                         FORM TAMBAH MEMBER
                     </div>
-                    <form action="{{ route('user.store') }}" method="POST">
+                    <form action="{{ route('member.store') }}" method="POST">
                         @csrf
                         <div class="panel-body">
                             <div class="form-group">
@@ -56,6 +56,15 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="keterangan">Level Member</label>
+                                <select required name="keterangan" id="keterangan" class="form-control" required>
+                                    <option value="">-- Pilih Level Member --</option>
+                                    <option value="bronze">Bronze</option>
+                                    <option value="silver">Silver</option>
+                                    <option value="gold">Gold</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="id_outlet">Outlet</label>
                                 <select required name="id_outlet" id="id_outlet" class="form-control" required>
                                     <option value="">-- Pilih Outlet --</option>
@@ -65,20 +74,11 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="role">Role</label>
-                                <select required name="role" id="role" class="form-control" required>
-                                    <option value="">-- Pilih Role --</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="admin">Kasir</option>
-                                    <option value="admin">Owner</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label for="password">Password</label>
                                 <input required class="form-control" required type="password" placeholder="Password"
                                     name="password" id="password">
                             </div>
-                            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah User</button>
+                            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Member</button>
                         </div>
                     </form>
                 </div>
