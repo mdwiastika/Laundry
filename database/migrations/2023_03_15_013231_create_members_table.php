@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('tlp');
             $table->enum('keterangan', ['bronze', 'silver', 'gold']);
+            $table->foreignId('id_user')->constrained('users', 'id');
             $table->timestamps();
         });
     }

@@ -15,6 +15,10 @@ class TransaksiOk
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (auth()->user()->role == 'admin' || auth()->user()->role == 'kasir') {
+            return $next($request);
+        } else {
+            return redirect()->route('dashboard')->with('error', 'Akses Ditolak');
+        }
     }
 }

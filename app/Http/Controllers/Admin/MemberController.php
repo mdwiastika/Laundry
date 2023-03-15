@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Member;
+use App\Models\Outlet;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -13,7 +14,12 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        $members = Member::latest()->get();
+        return view('admin.member.member', [
+            'title' => 'Laundry | Table Member',
+            'active' => 'table',
+            'members' => $members,
+        ]);
     }
 
     /**

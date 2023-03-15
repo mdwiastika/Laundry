@@ -16,6 +16,7 @@
         <div class="right-div">
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
+                <h4>{{ auth()->user()->nama }} ({{ auth()->user()->role }})</h4>
                 <button type="submit" class="btn btn-danger">LOGOUT</button>
             </form>
         </div>

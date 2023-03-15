@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\OutletController;
 use App\Http\Controllers\Admin\PaketController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\User\HomepageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +33,12 @@ Route::middleware('guest')->group(function () {
 });
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('/user', UserController::class);
-    Route::resource('/paket', PaketController::class);
-    Route::resource('/member', MemberController::class);
-    Route::resource('/outlet', OutletController::class);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('dashboard_ok');
+    Route::resource('/user', UserController::class)->middleware('user_ok');
+    Route::resource('/paket', PaketController::class)->middleware('paket_ok');
+    Route::resource('/member', MemberController::class)->middleware('member_ok');
+    Route::resource('/outlet', OutletController::class)->middleware('outlet_ok');
+    Route::resource('/transaksi', TransaksiController::class)->middleware('transaksi_ok');
+    Route::get('/laporan-transaksi', [LaporanController::class, 'index'])->name('laporan')->middleware('dashboard_ok');
+    Route::get('/home')->name('home', [HomepageController::class, 'index']);
 });

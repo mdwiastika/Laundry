@@ -40,8 +40,8 @@
     <script src="{{ asset('/adminpage/assets/js/bootstrap.js') }}"></script>
     <!-- CUSTOM SCRIPTS  -->
     <script src="{{ asset('/adminpage/assets/js/custom.js') }}"></script>
-    <script src="{{ asset('assets/js/dataTables/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('assets/js/dataTables/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('/adminpage/assets/js/dataTables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('/adminpage/assets/js/dataTables/dataTables.bootstrap.js') }}"></script>
 </body>
 
 </html>

@@ -45,7 +45,7 @@ class AuthController extends Controller
         try {
             $validatedData = $request->validate([
                 'nama' => 'required',
-                'username' => 'required',
+                'username' => 'required|unique:users,username',
                 'email' => 'required|unique:users',
                 'password' => 'required',
             ]);
@@ -66,11 +66,14 @@ class AuthController extends Controller
                     'tlp' => 'required',
                 ]);
                 $validatedMember['keterangan'] = 'bronze';
-                Member::create($validatedMember);
                 $validatedData['role'] = 'member';
             }
 
             $user_create = User::create($validatedData);
+            if ($validatedData['role'] == 'member') {
+                $validatedMember['id_user'] = $user_create->id;
+                Member::create($validatedMember);
+            }
             DB::commit();
             Auth::login($user_create);
             return redirect()->intended('dashboard');

@@ -16,7 +16,7 @@
                         Advanced Tables
                     </div>
                     <div class="panel-body">
-                        <a href="{{ route('user.create') }}" class="btn btn-success" style="margin-bottom: 10px"><i
+                        <a href="{{ route('member.create') }}" class="btn btn-success" style="margin-bottom: 10px"><i
                                 class="fa fa-plus
                             "></i> Tambah Data</a>
                         <div class="table-responsive">
@@ -25,29 +25,27 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Outlet</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>Keterangan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $key => $user)
+                                    @foreach ($members as $key => $member)
                                         <tr class="odd gradeX">
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $user->nama }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->role }}</td>
-                                            <td>{{ $user->outlet->nama }}</td>
+                                            <td>{{ $member->nama }}</td>
+                                            <td>{{ $member->jenis_kelamin }}</td>
+                                            <td>{{ $member->keterangan }}</td>
                                             <td>
                                                 <div style="display: flex; justify-content: center; column-gap: 10px">
-                                                    <a href="{{ route('user.show', $user->id) }}"
+                                                    <a href="{{ route('member.show', $member->id) }}"
                                                         class="btn btn-primary d-inline-block">
                                                         <i class="fa fa-eye"></i> Show</a>
-                                                    <a href="{{ route('user.edit', $user->id) }}"
+                                                    <a href="{{ route('member.edit', $member->id) }}"
                                                         class="btn btn-warning d-inline-block"><i class="fa fa-edit"></i>
                                                         Edit</a>
-                                                    <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                                    <form action="{{ route('member.destroy', $member->id) }}" method="POST"
                                                         class="d-inline-block">
                                                         @csrf
                                                         @method('DELETE')

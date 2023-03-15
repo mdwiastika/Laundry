@@ -157,7 +157,7 @@
            @csrf
            <h3>Form Login</h3>
            <label for="username">Username</label>
-           <input type="text" placeholder="Email or Phone" name="username" id="username">
+           <input type="text" placeholder="Username" name="username" id="username">
            <label for="password">Password</label>
            <input type="password" placeholder="Password" name="password" id="password">
 

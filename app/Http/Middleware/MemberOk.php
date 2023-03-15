@@ -15,6 +15,10 @@ class MemberOk
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (auth()->user()->role == 'admin' || auth()->user()->role == 'kasir') {
+            return $next($request);
+        } else {
+            return redirect('/home')->with('error', 'Akses Ditolak');
+        }
     }
 }

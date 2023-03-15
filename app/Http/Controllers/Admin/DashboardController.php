@@ -24,6 +24,7 @@ class DashboardController extends Controller
             'member_count' => $member_count,
             'outlet_count' => $outlet_count,
             'paket_count' => $paket_count,
+            'active' => 'dashboard',
         ]);
     }
 }

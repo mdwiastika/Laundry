@@ -34,6 +34,27 @@
                                 <input required class="form-control" required type="text" placeholder="Masukkan Username"
                                     name="username" id="username">
                             </div>
+
+                            <div class="form-group">
+                                <label for="alamat">Alamat</label>
+                                <textarea name="alamat" class="form-control" id="alamat" placeholder="Masukkan Alamat" required cols="30"
+                                    rows="10"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tlp">Telepon</label>
+                                <input required class="form-control" required type="text" placeholder="Masukkan Telepon"
+                                    name="tlp" id="tlp">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="jenis_kelamin">Jenis Kelamin</label>
+                                <select required name="jenis_kelamin" id="jenis_kelamin" class="form-control" required>
+                                    <option value="">-- Pilih Jenis Kelamin --</option>
+                                    <option value="L">Laki-Laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="id_outlet">Outlet</label>
                                 <select required name="id_outlet" id="id_outlet" class="form-control" required>
@@ -48,8 +69,8 @@
                                 <select required name="role" id="role" class="form-control" required>
                                     <option value="">-- Pilih Role --</option>
                                     <option value="admin">Admin</option>
-                                    <option value="kasir">Kasir</option>
-                                    <option value="owner">Owner</option>
+                                    <option value="admin">Kasir</option>
+                                    <option value="admin">Owner</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -58,8 +79,6 @@
                                     name="password" id="password">
                             </div>
                             <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah User</button>
-                            <a href="{{ route('user.index') }}" class="btn btn-info"><i class="fa fa-reply"></i> Kembali</a>
-
                         </div>
                     </form>
                 </div>
