@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row pad-botm">
             <div class="col-12">
-                <h4 class="header-line">FORM USER</h4>
+                <h4 class="header-line">FORM MEMBER</h4>
 
             </div>
 
@@ -12,7 +12,7 @@
             <div class="col-md-12 col-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        FORM TAMBAH USER
+                        FORM TAMBAH MEMBER
                     </div>
                     <form action="{{ route('user.store') }}" method="POST">
                         @csrf

@@ -50,7 +50,7 @@ class UserController extends Controller
                 'id_outlet' => 'required',
                 'role' => 'required',
             ]);
-            $validatedDatap['password'] = Hash::make($request->password);
+            $validatedData['password'] = Hash::make($request->password);
             User::create($validatedData);
             return redirect()->route('user.index')->with('success', 'Sukses Create User');
         } catch (\Throwable $th) {
