@@ -40,7 +40,14 @@
                                             <td>{{ $transaksi->member->nama }}</td>
                                             <td>{{ $transaksi->status }}</td>
                                             <td>{{ $transaksi->dibayar }}</td>
-                                            <td>{{ $transaksi->biaya_tambahan }}</td>
+                                            @php
+                                                $diskon_transaksi = ($transaksi->diskon / 100) * ($transaksi->biaya_tambahan + $transaksi->denda);
+                                                $pajak_transaksi = ($transaksi->pajak / 100) * ($transaksi->biaya_tambahan - $diskon_transaksi);
+                                                $transaksi_total = $transaksi->biaya_tambahan - $diskon_transaksi + $pajak_transaksi;
+                                            @endphp
+                                            <td>
+                                                Rp {{ number_format($transaksi_total, 0, '.', ',') }}
+                                            </td>
                                             <td>
                                                 <div style="display: flex; justify-content: center; column-gap: 10px">
                                                     <a href="{{ route('transaksi.show', $transaksi->id) }}"
