@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('tgl');
             $table->dateTime('batas_waktu');
             $table->dateTime('tgl_bayar')->nullable();
-            $table->integer('biaya_tambahan', 20)->nullable();
+            $table->integer('biaya_tambahan')->nullable();
             $table->integer('diskon');
             $table->integer('denda')->default(0)->nullable();
             $table->integer('pajak')->default(0)->nullable();
