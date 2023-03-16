@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MemberOk
+class IsMember
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,10 @@ class MemberOk
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role == 'admin') {
+        if (auth()->user()->role == 'member') {
             return $next($request);
         } else {
-            return redirect('/dashboard')->with('error', 'Akses Ditolak');
+            return redirect()->route('dashboard')->with('error', 'Akses Ditolak');
         }
     }
 }

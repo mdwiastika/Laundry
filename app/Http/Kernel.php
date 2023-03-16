@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'paket_ok' => \App\Http\Middleware\PaketOk::class,
         'user_ok' => \App\Http\Middleware\UserOk::class,
         'transaksi_ok' => \App\Http\Middleware\TransaksiOk::class,
+        'is_member' => \App\Http\Middleware\IsMember::class,
     ];
 }

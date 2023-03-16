@@ -51,6 +51,7 @@
                                         <th>Status</th>
                                         <th>Pembayaran</th>
                                         <th>Total Bayar</th>
+                                        <th>Paket Transaksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,6 +69,14 @@
                                             @endphp
                                             <td>
                                                 Rp {{ number_format($transaksi_total, 0, '.', ',') }}
+                                            </td>
+                                            <td>
+                                                <ul>
+                                                    @foreach ($transaksi->detail_transaksi as $single_transaksi)
+                                                        <li>{{ $single_transaksi->paket->nama_paket }}
+                                                            ({{ $single_transaksi->qty }} buah)</li>
+                                                    @endforeach
+                                                </ul>
                                             </td>
                                         </tr>
                                     @endforeach
