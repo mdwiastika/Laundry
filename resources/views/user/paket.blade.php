@@ -2,8 +2,8 @@
 @section('content')
 <section class="services-section section-padding">
     <div class="container" style="position: relative">
-        <form action="{{ route('user-transaksi') }}" method="POST">
-            <button class="btn btn-success" type="submit"><i class="bi-plus"></i> Tambah Transaksi</button>
+        <form action="{{ route('user-transaksi') }}" id="form-create-transaksi" method="POST">
+            <button class="btn btn-success" style="position: fixed; z-index: 99; bottom: 200px; right: 10px;" type="submit"><i class="bi-plus"></i> Bayar</button>
             @csrf
             <div class="row">
                 @foreach ($pakets as $paket)
@@ -48,7 +48,7 @@
                                                   <i class="bi-dash dash" style="font-size: 1.3em" data-id='{{ $paket->id }}'></i>
                                                 </button>
                                             </span>
-                                            <input type="number" style="text-align: center" name="qty[{{ $paket->id }}]" class="form-control input-number" value="0" min="0" max="100" id="input{{ $paket->id }}">
+                                            <input type="number" style="text-align: center" name="qty[{{ $paket->id }}]" class="form-control input-number input-js" value="0" min="0" max="100" id="input{{ $paket->id }}">
                                             <span class="input-group-btn plus" data-id='{{ $paket->id }}'>
                                                 <button type="button" class="btn btn-success btn-number plus" data-type="plus" data-field="quant[2]" data-id='{{ $paket->id }}'>
                                                     <i class="bi-plus plus" style="font-size: 1.3em" data-id='{{ $paket->id }}'></i>
@@ -79,6 +79,18 @@
                 input_qty = document.getElementById(`input${e.target.getAttribute('data-id')}`)
                 input_qty.value = (parseInt(input_qty.value) + 1);
             }
+        })
+        const form_transaksi = document.getElementById('form-create-transaksi');
+        form_transaksi.addEventListener('submit', function(e){
+            const all_input = document.querySelectorAll('.input-js');
+            console.log(all_input);
+            for (let i = 0; i < all_input.length; i++) {
+                if (all_input[i].value != 0) {
+                    return true;
+                }
+            }
+            e.preventDefault();
+            alert('Pilih Setidaknya satu paket');
         })
 </script>
 @endsection
