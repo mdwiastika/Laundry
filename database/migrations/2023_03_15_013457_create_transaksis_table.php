@@ -14,17 +14,18 @@ return new class extends Migration
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_outlet')->constrained('outlets', 'id')->cascadeOnDelete();
-            $table->string('kode_invoice');
+            $table->string('kode_invoice')->nullable();
             $table->foreignId('id_member')->constrained('members', 'id')->cascadeOnDelete();
             $table->dateTime('tgl');
             $table->dateTime('batas_waktu');
-            $table->dateTime('tgl_bayar');
-            $table->dateTime('biaya_tambahan');
+            $table->dateTime('tgl_bayar')->nullable();
+            $table->integer('biaya_tambahan', 20)->nullable();
             $table->integer('diskon');
-            $table->integer('pajak');
+            $table->integer('denda')->default(0)->nullable();
+            $table->integer('pajak')->default(0)->nullable();
             $table->enum('status', ['baru', 'proses', 'selesai', 'diambil']);
             $table->enum('dibayar', ['dibayar', 'belum_dibayar']);
-            $table->foreignId('id_user')->constrained('users','id')->cascadeOnDelete();
+            $table->foreignId('id_user')->constrained('users', 'id')->cascadeOnDelete();
             $table->timestamps();
         });
     }

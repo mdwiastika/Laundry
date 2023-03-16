@@ -9,7 +9,7 @@ class Transaksi extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $with = ['outlet', 'member', 'user', 'detail_transksi'];
+    protected $with = ['outlet', 'member', 'user'];
     public function outlet()
     {
         return $this->belongsTo(Outlet::class, 'id_outlet', 'id');

@@ -19,7 +19,11 @@
     <link href="{{ asset('/adminpage/assets/js/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet" />
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
+    <style>
+        .center-input {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
