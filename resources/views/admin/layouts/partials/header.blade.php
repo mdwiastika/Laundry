@@ -60,7 +60,7 @@
                             </ul>
                         </li>
                         <li><a href="{{ route('laporan') }}"
-                                class="class={{ str_contains(url()->current(), 'laporan') ? 'menu-top-active' : '' }}">LAPORAN</a>
+                                class="{{ str_contains(url()->current(), 'laporan') ? 'menu-top-active' : '' }}">LAPORAN</a>
                         </li>
                     </ul>
                 </div>

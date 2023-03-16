@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/outlet', OutletController::class)->middleware('outlet_ok');
     Route::resource('/transaksi', TransaksiController::class)->middleware('transaksi_ok');
     Route::get('/laporan-transaksi', [LaporanController::class, 'index'])->name('laporan')->middleware('dashboard_ok');
+    Route::get('/print-laporan', [LaporanController::class, 'print'])->name('print-laporan-transaksi');
     Route::get('/home')->name('home', [HomepageController::class, 'index']);
     Route::get('/get-paket-by-member/{id_member}', [TransaksiController::class, 'getPaket']);
 });
