@@ -9,6 +9,8 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        return 'hi';
+        return view('user.home', [
+            'title' => 'Laundry | Homepage',
+        ]);
     }
 }
