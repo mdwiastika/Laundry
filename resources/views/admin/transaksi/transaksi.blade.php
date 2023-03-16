@@ -53,12 +53,10 @@
                                                     <a href="{{ route('transaksi.show', $transaksi->id) }}"
                                                         class="btn btn-primary d-inline-block">
                                                         <i class="fa fa-eye"></i> Show</a>
-                                                    @if (!$transaksi->tgl_bayar)
                                                         <a href="{{ route('transaksi.edit', $transaksi->id) }}"
                                                             class="btn btn-warning d-inline-block"><i
                                                                 class="fa fa-edit"></i>
                                                             Edit</a>
-                                                    @endif
                                                     <form action="{{ route('transaksi.destroy', $transaksi->id) }}"
                                                         method="POST" class="d-inline-block">
                                                         @csrf

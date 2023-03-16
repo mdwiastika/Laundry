@@ -10,6 +10,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
     <title>{{ $title }}</title>
+    <link rel="shortcut icon" href="{{ asset('/userpage/images/favicon.ico') }}" type="image/x-icon">
+<link rel="icon" href="{{ asset('/userpage/images/favicon.ico') }}" type="image/x-icon">
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="{{ asset('/adminpage/assets/css/bootstrap.css') }}" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->

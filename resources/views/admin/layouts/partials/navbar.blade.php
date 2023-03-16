@@ -8,7 +8,7 @@
             </button>
             <a class="navbar-brand" href="index.html">
 
-                <img src="{{ asset('/adminpage/assets/img/logo.png') }}" />
+                <img src="{{ asset('/adminpage/assets/img/logo2.png') }}" />
             </a>
 
         </div>

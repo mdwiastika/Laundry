@@ -14,9 +14,10 @@ class PaketController extends Controller
     public function index(): View
     {
         $pakets = Paket::whereIn('id', [auth()->user()->id_outlet, 1])->latest()->get();
-        dd($pakets);
         return view('user.paket', [
             'title' => 'Laundry | List Paket',
+            'linkref' => 'All Paket',
+            'pakets' => $pakets
         ]);
     }
 }

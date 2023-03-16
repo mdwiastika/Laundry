@@ -8,7 +8,10 @@ use App\Http\Controllers\Admin\PaketController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\User\HistoryController;
 use App\Http\Controllers\User\HomepageController;
+use App\Http\Controllers\User\PaketController as UserPaketController;
+use App\Http\Controllers\User\TransaksiController as UserTransaksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/get-paket-by-member/{id_member}', [TransaksiController::class, 'getPaket']);
     Route::middleware('is_member')->group(function () {
         Route::get('home', [HomepageController::class, 'index'])->name('home');
-        Route::get('/user/paket', [PaketController::class, 'index'])->name('paket-user');
+        Route::get('/all-paket', [UserPaketController::class, 'index'])->name('paket-user');
+        Route::get('/all-history', [HistoryController::class, 'index'])->name('history-user');
+        Route::post('/user-transaksi', [UserTransaksiController::class, 'store'])->name('user-transaksi');
     });
 });

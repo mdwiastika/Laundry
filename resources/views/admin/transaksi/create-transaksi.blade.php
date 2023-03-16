@@ -1,5 +1,15 @@
 @extends('admin.layouts.app')
 @section('content')
+<style>
+    input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+</style>
     <div class="container">
         <div class="row pad-botm">
             <div class="col-12">
@@ -14,7 +24,7 @@
                     <div class="panel-heading">
                         FORM TAMBAH TRANSAKSI
                     </div>
-                    <form action="{{ route('transaksi.store') }}" method="POST">
+                    <form action="{{ route('transaksi.store') }}" id="form-create-transaksi" method="POST">
                         @csrf
                         <div class="panel-body">
                             <div class="form-group">
@@ -95,7 +105,7 @@
 
                                                 <div class="col-md-12 panelBottom">
                                                     <div class="col-md-4 text-left">
-                                                        <h5>Rp <span class="itemPrice">${data.harga}</span></h5>
+                                                        <h5>Rp <span class="itemPrice">${parseInt(data.harga).toLocaleString()}</span></h5>
                                                     </div>
                                                     <div class="col-md-8 text-center">
                                                         <div class="input-group">
@@ -106,7 +116,7 @@
                                                                         id="${data.id}"></i></button>
                                                             </span>
                                                             <input type="number" value="0" id="input${data.id}" name="qty[${data.id}]"
-                                                                class="form-control center-input">
+                                                                class="form-control center-input input-js">
                                                             <span class="form-group input-group-btn fa-plus" id="${data.id}">
                                                                 <button class="btn btn-default ok-plus"id="${data.id}"
                                                                     type="button"><i class="fa fa-plus ok-plus"
@@ -137,6 +147,18 @@
                 console.log(e.target.id, input_qty)
                 input_qty.value = (parseInt(input_qty.value) + 1);
             }
+        })
+        const form_transaksi = document.getElementById('form-create-transaksi');
+        form_transaksi.addEventListener('submit', function(e){
+            const all_input = document.querySelectorAll('.input-js');
+            console.log(all_input);
+            for (let i = 0; i < all_input.length; i++) {
+                if (all_input[i].value != 0) {
+                    return true;
+                }
+            }
+            e.preventDefault();
+            alert('Pilih Setidaknya satu paket');
         })
     </script>
 @endsection
