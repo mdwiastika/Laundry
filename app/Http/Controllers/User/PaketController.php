@@ -13,7 +13,11 @@ class PaketController extends Controller
 {
     public function index(): View
     {
-        $pakets = Paket::whereIn('id_outlet', [auth()->user()->id_outlet, 1])->latest()->get();
+        if (auth()->user()->id_outlet == 1) {
+            $pakets = Paket::all();
+        } else {
+            $pakets = Paket::whereIn('id_outlet', [auth()->user()->id_outlet, 1])->latest()->get();
+        }
         return view('user.paket', [
             'title' => 'Laundry | List Paket',
             'linkref' => 'All Paket',

@@ -12,6 +12,7 @@ use App\Http\Controllers\User\HistoryController;
 use App\Http\Controllers\User\HomepageController;
 use App\Http\Controllers\User\PaketController as UserPaketController;
 use App\Http\Controllers\User\TransaksiController as UserTransaksiController;
+use App\Http\Controllers\User\UserController as UserUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,5 +52,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/all-history', [HistoryController::class, 'index'])->name('history-user');
         Route::post('/user-transaksi', [UserTransaksiController::class, 'store'])->name('user-transaksi');
         Route::get('/history/{id_transaksi}', [HistoryController::class, 'show'])->name('user-show-history');
+        Route::get('/edit-account', [UserUserController::class, 'edit'])->name('user-edit-account');
+        Route::post('/edit-account', [UserUserController::class, 'update'])->name('user-update-account');
     });
 });

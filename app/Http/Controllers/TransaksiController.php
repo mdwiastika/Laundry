@@ -176,7 +176,11 @@ class TransaksiController extends Controller
     {
         try {
             $member = Member::where('id', $id_member)->first();
-            $pakets = Paket::whereIn('id_outlet', [$member->user->id_outlet, 1])->get();
+            if ($member->user->id_outlet == 1) {
+                $pakets = Paket::all();
+            } else {
+                $pakets = Paket::whereIn('id_outlet', [$member->user->id_outlet, 1])->get();
+            }
             return response()->json([
                 'message' => 'Sukses Get Data',
                 'data' => $pakets,

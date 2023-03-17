@@ -28,7 +28,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link">Selamat Datang, {{ auth()->user()->username }}</a>
+                    <a class="nav-link  {{ str_contains(url()->current(), 'account') ? 'active' : '' }}"
+                        href="{{ route('user-edit-account') }}">Account</a>
                 </li>
 
                 <li class="nav-item ms-3">
