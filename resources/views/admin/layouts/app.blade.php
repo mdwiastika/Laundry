@@ -11,7 +11,7 @@
         <![endif]-->
     <title>{{ $title }}</title>
     <link rel="shortcut icon" href="{{ asset('/userpage/images/favicon.ico') }}" type="image/x-icon">
-<link rel="icon" href="{{ asset('/userpage/images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('/userpage/images/favicon.ico') }}" type="image/x-icon">
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="{{ asset('/adminpage/assets/css/bootstrap.css') }}" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -21,6 +21,7 @@
     <link href="{{ asset('/adminpage/assets/js/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet" />
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <script src="{{ asset('/userpage/js/sweetalert.js') }}"></script>
     <style>
         .center-input {
             text-align: center;

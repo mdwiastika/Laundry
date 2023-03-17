@@ -104,7 +104,12 @@
                 }
             }
             e.preventDefault();
-            alert('Pilih Setidaknya satu paket');
+            Swal.fire({
+                title: 'Error!',
+                html: '<h3>Isi setidaknya satu buah dalam list paket</h3>',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
         })
     </script>
 @endsection

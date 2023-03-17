@@ -1,15 +1,16 @@
 @extends('admin.layouts.app')
 @section('content')
-<style>
-    input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type=number] {
-  -moz-appearance: textfield;
-}
-</style>
+    <style>
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
     <div class="container">
         <div class="row pad-botm">
             <div class="col-12">
@@ -149,7 +150,7 @@ input[type=number] {
             }
         })
         const form_transaksi = document.getElementById('form-create-transaksi');
-        form_transaksi.addEventListener('submit', function(e){
+        form_transaksi.addEventListener('submit', function(e) {
             const all_input = document.querySelectorAll('.input-js');
             console.log(all_input);
             for (let i = 0; i < all_input.length; i++) {
@@ -158,7 +159,12 @@ input[type=number] {
                 }
             }
             e.preventDefault();
-            alert('Pilih Setidaknya satu paket');
+            Swal.fire({
+                title: 'Error!',
+                html: '<h3>Isi setidaknya satu buah dalam list paket</h3>',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
         })
     </script>
 @endsection

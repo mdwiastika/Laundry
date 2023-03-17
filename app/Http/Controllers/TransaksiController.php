@@ -61,13 +61,13 @@ class TransaksiController extends Controller
                 $paket = Paket::where('id', $id_paket)->first();
                 $biaya_paket = $biaya_paket + ($paket->harga * $qty_paket);
             }
-            if ($biaya_paket <= 10000) {
-                $validatedTransaksi['pajak'] = 0;
-            } elseif ($biaya_paket <= 25000) {
-                $validatedTransaksi['pajak'] = 4;
-            } elseif ($biaya_paket > 25000) {
-                $validatedTransaksi['pajak'] = 2;
-            }
+            // if ($biaya_paket <= 10000) {
+            //     $validatedTransaksi['pajak'] = 0;
+            // } elseif ($biaya_paket <= 25000) {
+            //     $validatedTransaksi['pajak'] = 4;
+            // } elseif ($biaya_paket > 25000) {
+            //     $validatedTransaksi['pajak'] = 2;
+            // }
             $validatedTransaksi['biaya_tambahan'] = $biaya_paket;
             $member = Member::where('id', $request->id_member)->first();
             // diskon pembelian dengan satuan persen
@@ -166,7 +166,8 @@ class TransaksiController extends Controller
     public function destroy(Transaksi $transaksi): RedirectResponse
     {
         try {
-            $transaksi->delete();
+            // $transaksi->delete();
+            DB::select('CALL delete_transaksi(?)', array($transaksi->id));
             return redirect()->route('transaksi.index')->with('success', 'Sukses Destroy Transaksi');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
