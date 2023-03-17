@@ -23,7 +23,7 @@
                             placeholder="Masukkan Password" name="password" />
                     </div>
                     <div class="form-outline form-white mb-4">
-                        <label for="" class="text-dark">Password (Isi jika ingin mengganti)</label>
+                        <label for="" class="text-dark">Outlet User</label>
                         <select name="id_outlet" required id="id_outlet" class="form-control form-control-lg">
                             <option value="">-- Pilih Outlet --</option>
                             @foreach ($outlets as $outlet)
