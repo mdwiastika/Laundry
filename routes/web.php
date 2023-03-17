@@ -50,5 +50,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/all-paket', [UserPaketController::class, 'index'])->name('paket-user');
         Route::get('/all-history', [HistoryController::class, 'index'])->name('history-user');
         Route::post('/user-transaksi', [UserTransaksiController::class, 'store'])->name('user-transaksi');
+        Route::get('/history/{id_transaksi}', [HistoryController::class, 'show'])->name('user-show-history');
     });
 });

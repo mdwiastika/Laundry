@@ -14,14 +14,17 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link {{ str_contains(url()->current(), 'home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link {{ str_contains(url()->current(), 'home') ? 'active' : '' }}"
+                        href="{{ route('home') }}">Home</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ str_contains(url()->current(), 'paket') ? 'active' : '' }}" href="{{ route('paket-user') }}">Paket</a>
+                    <a class="nav-link {{ str_contains(url()->current(), 'paket') ? 'active' : '' }}"
+                        href="{{ route('paket-user') }}">Paket</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ str_contains(url()->current(), 'history') ? 'active' : '' }}" href="{{ route('paket-user') }}">History</a>
+                    <a class="nav-link {{ str_contains(url()->current(), 'history') ? 'active' : '' }}"
+                        href="{{ route('history-user') }}">History</a>
                 </li>
 
                 <li class="nav-item">
