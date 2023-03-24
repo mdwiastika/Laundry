@@ -126,21 +126,9 @@ class UserController extends Controller
         try {
             if ($request->search) {
                 $users = User::where('nama', 'LIKE', '%' . $request->search['value'] . '%')->skip($request->start)->take($request->length)->get();
-                $value_user = [];
-                foreach ($users as $key => $user) {
-                    $value_user[] = [
-                        $key + 1,
-                        $user->nama,
-                        $user->email,
-                        $user->role,
-                        $user->outlet->nama,
-                        $user->nama,
-                    ];
-                    // array_push();
-                }
                 return response()->json([
                     'draw' => $request->draw,
-                    'data' => $value_user,
+                    'data' => $users,
                     'recordsFiltered' => User::count(),
                     'recordsTotal' => User::count(),
                 ], 200);
