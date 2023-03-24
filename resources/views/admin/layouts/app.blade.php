@@ -13,12 +13,16 @@
     <link rel="shortcut icon" href="{{ asset('/userpage/images/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('/userpage/images/favicon.ico') }}" type="image/x-icon">
     <!-- BOOTSTRAP CORE STYLE  -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <link href="{{ asset('/adminpage/assets/css/bootstrap.css') }}" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
     <link href="{{ asset('/adminpage/assets/css/font-awesome.css') }}" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="{{ asset('/adminpage/assets/css/style.css') }}" rel="stylesheet" />
-    <link href="{{ asset('/adminpage/assets/js/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet" />
+    {{-- <link href="{{ asset('/adminpage/assets/js/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet" /> --}}
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+
+
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <script src="{{ asset('/userpage/js/sweetalert.js') }}"></script>
@@ -42,13 +46,14 @@
     <!-- FOOTER SECTION END-->
     <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY  -->
-    <script src="{{ asset('/adminpage/assets/js/jquery-1.10.2.js') }}"></script>
+    {{-- <script src="{{ asset('/adminpage/assets/js/jquery-1.10.2.js') }}"></script> --}}
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="{{ asset('/adminpage/assets/js/bootstrap.js') }}"></script>
     <!-- CUSTOM SCRIPTS  -->
     <script src="{{ asset('/adminpage/assets/js/custom.js') }}"></script>
-    <script src="{{ asset('/adminpage/assets/js/dataTables/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('/adminpage/assets/js/dataTables/dataTables.bootstrap.js') }}"></script>
+    {{-- <script src="{{ asset('/adminpage/assets/js/dataTables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('/adminpage/assets/js/dataTables/dataTables.bootstrap.js') }}"></script> --}}
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
 </body>
 
 </html>
