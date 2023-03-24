@@ -125,7 +125,13 @@ class UserController extends Controller
     {
         try {
             if ($request->search) {
-                $users = User::where('nama', 'LIKE', '%' . $request->search['value'] . '%')->skip($request->start)->take($request->length)->get();
+                $users = User::where('nama', 'LIKE', '%' . $request->search['value'] . '%')
+                    ->orWhere('email', 'LIKE', '%' . $request->search['value'] . '%')
+                    ->orWhere('role', 'LIKE', '%' . $request->search['value'] . '%')
+                    ->orWhereHas('outlet', function ($user) use ($request) {
+                        $user->where('nama', 'LIKE', '%' . $request->search['value'] . '%');
+                    })
+                    ->skip($request->start)->take($request->length)->get();
                 return response()->json([
                     'draw' => $request->draw,
                     'data' => $users,
