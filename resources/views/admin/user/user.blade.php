@@ -77,7 +77,7 @@
         ajax: '{{ route('get-user-datatable') }}',
         responsive: true,
         "columns": [
-            { "data": "id", "title": "No" },
+            { "data": null, "title": "No" },
             { "data": "nama", "title": "Nama" },
             { "data": "email", "title": "Email" },
             { "data": "role", "title": "Role" },
@@ -85,9 +85,15 @@
             { "data": null, "title": "Aksi" },
         ],
         "aoColumnDefs": [{
+            "aTargets": [0],
+            "mData": null,
+            "mRender": function(data, type, row, meta) {
+                return meta.row + meta.settings._iDisplayStart + 1;
+            }
+        },{
             "aTargets": [5],
             "mData": null,
-            "mRender": function(data, type, full) {
+            "mRender": function(data, type, row, meta) {
                 return `<div style="display: flex; justify-content: center; column-gap: 10px">
                                                     <a href="{{ route('user.show', ':id') }}"
                                                         class="btn btn-primary d-inline-block">

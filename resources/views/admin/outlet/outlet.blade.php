@@ -20,7 +20,7 @@
                                 class="fa fa-plus
                             "></i> Tambah Data</a>
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table table-striped table-bordered table-hover" id="example">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -31,7 +31,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($outlets as $key => $outlet)
+                                    {{-- @foreach ($outlets as $key => $outlet)
                                         <tr class="odd gradeX">
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $outlet->nama }}</td>
@@ -55,7 +55,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @endforeach --}}
                                 </tbody>
                             </table>
                         </div>
@@ -66,4 +66,13 @@
             </div>
         </div>
     </div>
+    <script>
+        window.onload = () =>{
+            $('#example').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('get-outlet-datatable') }}',
+            });
+        }
+    </script>
 @endsection

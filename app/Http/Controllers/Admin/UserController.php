@@ -138,6 +138,10 @@ class UserController extends Controller
                     'recordsFiltered' => User::count(),
                     'recordsTotal' => User::count(),
                 ], 200);
+            } else {
+                return response()->json([
+                    'message' => 'Data tidak ada',
+                ], 200);
             }
         } catch (\Throwable $th) {
             return response()->json([
