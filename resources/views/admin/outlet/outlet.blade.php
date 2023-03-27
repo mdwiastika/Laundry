@@ -71,7 +71,34 @@
             $('#example').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route('get-outlet-datatable') }}',
+                ajax: '{{ route('outlet.index') }}',
+                columns: [{
+                    "data":"id",
+                    "name":"id",
+                },
+                {
+                    "data":"nama",
+                    "name":"nama",
+                },{
+                    "data":"alamat",
+                    "name":"alamat",
+                },
+                {
+                    "data":"tlp",
+                    "name":"tlp",
+                },
+                {
+                    "data":"id",
+                    "name":"id",
+                },
+                ],
+                aoColumnDefs:[{
+                    "aTargets": [4],
+                    "mData": null,
+                    "mRender": function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1 + "hu";
+                    }
+                }]
             });
         }
     </script>

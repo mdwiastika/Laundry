@@ -21,7 +21,7 @@
                             "></i> Tambah Data</a>
             <div class="table-responsive">
               <table class="table table-striped table-bordered table-hover" id="example">
-                {{-- <thead>
+                <thead>
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
@@ -30,7 +30,7 @@
                     <th>Outlet</th>
                     <th>Aksi</th>
                   </tr>
-                </thead> --}}
+                </thead>
                 {{-- <tbody>
                                     @foreach ($users as $key => $user)
                                         <tr class="odd gradeX">
@@ -74,15 +74,14 @@
       $('#example').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{{ route('get-user-datatable') }}',
-        responsive: true,
+        ajax: '{{ route('user.index') }}',
         "columns": [
-            { "data": null, "title": "No" },
-            { "data": "nama", "title": "Nama" },
-            { "data": "email", "title": "Email" },
-            { "data": "role", "title": "Role" },
-            { "data": "outlet.nama", "title": "Outlet" },
-            { "data": null, "title": "Aksi" },
+            { "data": "id", "name": "id" },
+            { "data": "nama", "name": "nama" },
+            { "data": "email", "name": "email" },
+            { "data": "role", "name": "role" },
+            { "data": "outlet.nama", "name": "outlet.nama" },
+            { "data": "id", "name": "id" },
         ],
         "aoColumnDefs": [{
             "aTargets": [0],

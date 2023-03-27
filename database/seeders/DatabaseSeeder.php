@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             OutletSeeder::class,
         ]);
-        Outlet::factory(10)->create();
-        User::factory(15)->create();
+        Outlet::factory(10000)->create();
+        User::factory(55000)->create();
 
         // \App\Models\User::factory(10)->create();
 

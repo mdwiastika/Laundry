@@ -6,19 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\Outlet;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class OutletController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $outlets = Outlet::latest()->get();
+        $outlet = Outlet::query();
+        if ($request->ajax()) {
+            return DataTables::of($outlet)->toJson();
+        }
         return view('admin.outlet.outlet', [
             'title' => 'Laundry | Table Outlet',
             'active' => 'table',
-            'outlets' => $outlets,
         ]);
     }
 
@@ -103,38 +106,6 @@ class OutletController extends Controller
             return redirect()->route('outlet.index')->with('success', 'Sukses Delete Outlet');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
-        }
-    }
-    public function getAjaxOutlet(Request $request)
-    {
-        try {
-            $outlet_data = [];
-            if ($request->search) {
-                $outlets = Outlet::latest()->get();
-                foreach ($outlets as $key => $outlet) {
-                    $outlet_data[] = [
-                        $key + 1,
-                        $outlet->nama,
-                        $outlet->alamat,
-                        $outlet->tlp,
-                        $outlet->tlp,
-                    ];
-                }
-                return response()->json([
-                    'draw' => $request->draw,
-                    'data' => $outlet_data,
-                    'recordsFiltered' => Outlet::count(),
-                    'recordsTotal' => Outlet::count(),
-                ], 200);
-            } else {
-                return response()->json([
-                    'message' => 'Hm',
-                ], 200);
-            }
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => $th->getMessage(),
-            ], 505);
         }
     }
 }

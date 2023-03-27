@@ -7,15 +7,19 @@ use App\Models\Outlet;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::whereIn('role', ['admin', 'kasir', 'owner'])->latest()->get();
+        $users = User::query();
+        if ($request->ajax()) {
+            return DataTables::eloquent($users)->toJson();
+        }
         return view('admin.user.user', [
             'title' => 'Laundry | Table User',
             'users' => $users,
@@ -119,34 +123,6 @@ class UserController extends Controller
             return redirect()->route('user.index')->with('success', 'Sukses Delete User');
         } catch (\Throwable $th) {
             return redirect()->route('user.index')->with('error', $th->getMessage());
-        }
-    }
-    public function getAjax(Request $request)
-    {
-        try {
-            if ($request->search) {
-                $users = User::where('nama', 'LIKE', '%' . $request->search['value'] . '%')
-                    ->orWhere('email', 'LIKE', '%' . $request->search['value'] . '%')
-                    ->orWhere('role', 'LIKE', '%' . $request->search['value'] . '%')
-                    ->orWhereHas('outlet', function ($user) use ($request) {
-                        $user->where('nama', 'LIKE', '%' . $request->search['value'] . '%');
-                    })
-                    ->skip($request->start)->take($request->length)->get();
-                return response()->json([
-                    'draw' => $request->draw,
-                    'data' => $users,
-                    'recordsFiltered' => User::count(),
-                    'recordsTotal' => User::count(),
-                ], 200);
-            } else {
-                return response()->json([
-                    'message' => 'Data tidak ada',
-                ], 200);
-            }
-        } catch (\Throwable $th) {
-            return response()->json([
-                'message' => $th->getMessage(),
-            ], 505);
         }
     }
 }
