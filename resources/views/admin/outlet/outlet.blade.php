@@ -93,10 +93,31 @@
                 },
                 ],
                 aoColumnDefs:[{
-                    "aTargets": [4],
+                    "aTargets": [0],
                     "mData": null,
                     "mRender": function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1 + "hu";
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    "aTargets": [4],
+                    "mData": null,
+                    "mRender": function(data, type, full) {
+                        return `<div style="display: flex; justify-content: center; column-gap: 10px">
+                                                    <a href="{{ route('user.show', ':id') }}"
+                                                        class="btn btn-primary d-inline-block">
+                                                        <i class="fa fa-eye"></i> Show</a>
+                                                    <a href="{{ route('user.edit', ':id') }}"
+                                                        class="btn btn-warning d-inline-block"><i class="fa fa-edit"></i>
+                                                        Edit</a>
+                                                    <form action="{{ route('user.destroy', ':id') }}" method="POST"
+                                                        class="d-inline-block">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger"><i
+                                                                class="fa fa-trash-o"></i> Hapus</button>
+                                                    </form>
+                                                </div>`.replaceAll(':id', data);
                     }
                 }]
             });

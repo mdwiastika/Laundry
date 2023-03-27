@@ -107,7 +107,7 @@
                                                         <button type="submit" class="btn btn-danger"><i
                                                                 class="fa fa-trash-o"></i> Hapus</button>
                                                     </form>
-                                                </div>`.replaceAll(':id', data.id);
+                                                </div>`.replaceAll(':id', data);
             }
         }]
     });
