@@ -12,14 +12,23 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Yajra\DataTables\Facades\DataTables;
 
 class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            return DataTables::eloquent(Transaksi::query())->addColumn('transaksi_total', function ($transaksi) {
+                $diskon_transaksi = ($transaksi->diskon / 100) * ($transaksi->biaya_tambahan + $transaksi->denda);
+                $pajak_transaksi = ($transaksi->pajak / 100) * ($transaksi->biaya_tambahan - $diskon_transaksi);
+                $transaksi_total = $transaksi->biaya_tambahan - $diskon_transaksi + $pajak_transaksi;
+                return 'Rp ' . number_format($transaksi_total, 0, '.', ',');
+            })->toJson();
+        }
         $transaksis = Transaksi::latest()->get();
         return view('admin.transaksi.transaksi', [
             'title' => 'Laundry | Table Transaksi',

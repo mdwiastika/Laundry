@@ -7,19 +7,21 @@ use App\Models\Outlet;
 use App\Models\Paket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 
 class PaketController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pakets = Paket::latest()->get();
+        if ($request->ajax()) {
+            return DataTables::eloquent(Paket::query())->toJson();
+        }
         return view('admin.paket.paket', [
             'title' => 'Laundry | Table Outlet',
             'active' => 'table',
-            'pakets' => $pakets,
         ]);
     }
 

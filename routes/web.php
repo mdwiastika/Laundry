@@ -46,8 +46,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan')->middleware('dashboard_ok');
     Route::get('/print-laporan', [LaporanController::class, 'print'])->name('print-laporan-transaksi');
     Route::get('/get-paket-by-member/{id_member}', [TransaksiController::class, 'getPaket']);
-    Route::get('/get-user-ajax', [UserController::class, 'getAjax'])->name('get-user-datatable');
-    Route::get('/get-outlet-ajax', [OutletController::class, 'getAjaxOutlet'])->name('get-outlet-datatable');
     Route::middleware('is_member')->group(function () {
         Route::get('home', [HomepageController::class, 'index'])->name('home');
         Route::get('/all-paket', [UserPaketController::class, 'index'])->name('paket-user');

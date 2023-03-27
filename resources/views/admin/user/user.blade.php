@@ -31,34 +31,6 @@
                     <th>Aksi</th>
                   </tr>
                 </thead>
-                {{-- <tbody>
-                                    @foreach ($users as $key => $user)
-                                        <tr class="odd gradeX">
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $user->nama }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->role }}</td>
-                                            <td>{{ $user->outlet->nama }}</td>
-                                            <td>
-                                                <div style="display: flex; justify-content: center; column-gap: 10px">
-                                                    <a href="{{ route('user.show', $user->id) }}"
-                                                        class="btn btn-primary d-inline-block">
-                                                        <i class="fa fa-eye"></i> Show</a>
-                                                    <a href="{{ route('user.edit', $user->id) }}"
-                                                        class="btn btn-warning d-inline-block"><i class="fa fa-edit"></i>
-                                                        Edit</a>
-                                                    <form action="{{ route('user.destroy', $user->id) }}" method="POST"
-                                                        class="d-inline-block">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger"><i
-                                                                class="fa fa-trash-o"></i> Hapus</button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody> --}}
               </table>
             </div>
 

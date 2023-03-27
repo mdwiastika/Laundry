@@ -9,19 +9,21 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 
 class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $members = Member::latest()->get();
+        if ($request->ajax()) {
+            return DataTables::eloquent(Member::query())->toJson();
+        }
         return view('admin.member.member', [
             'title' => 'Laundry | Table Member',
             'active' => 'table',
-            'members' => $members,
         ]);
     }
 

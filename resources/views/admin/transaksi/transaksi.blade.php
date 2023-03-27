@@ -20,7 +20,7 @@
                                 class="fa fa-plus
                             "></i> Tambah Data</a>
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table table-striped table-bordered table-hover" id="example">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -32,43 +32,6 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach ($transaksis as $key => $transaksi)
-                                        <tr class="odd gradeX">
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $transaksi->kode_invoice }}</td>
-                                            <td>{{ $transaksi->member->nama }}</td>
-                                            <td>{{ $transaksi->status }}</td>
-                                            <td>{{ $transaksi->dibayar }}</td>
-                                            @php
-                                                $diskon_transaksi = ($transaksi->diskon / 100) * ($transaksi->biaya_tambahan + $transaksi->denda);
-                                                $pajak_transaksi = ($transaksi->pajak / 100) * ($transaksi->biaya_tambahan - $diskon_transaksi);
-                                                $transaksi_total = $transaksi->biaya_tambahan - $diskon_transaksi + $pajak_transaksi;
-                                            @endphp
-                                            <td>
-                                                Rp {{ number_format($transaksi_total, 0, '.', ',') }}
-                                            </td>
-                                            <td>
-                                                <div style="display: flex; justify-content: center; column-gap: 10px">
-                                                    <a href="{{ route('transaksi.show', $transaksi->id) }}"
-                                                        class="btn btn-primary d-inline-block">
-                                                        <i class="fa fa-eye"></i> Show</a>
-                                                        <a href="{{ route('transaksi.edit', $transaksi->id) }}"
-                                                            class="btn btn-warning d-inline-block"><i
-                                                                class="fa fa-edit"></i>
-                                                            Edit</a>
-                                                    <form action="{{ route('transaksi.destroy', $transaksi->id) }}"
-                                                        method="POST" class="d-inline-block">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger"><i
-                                                                class="fa fa-trash-o"></i> Hapus</button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
                             </table>
                         </div>
 
@@ -78,4 +41,50 @@
             </div>
         </div>
     </div>
+    <script>
+        window.onload = () => {
+      // cara pertama
+      $('#example').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{{ route('transaksi.index') }}',
+        "columns": [
+            { "data": "id", "name": "id" },
+            { "data": "kode_invoice", "name": "kode_invoice" },
+            { "data": "member.nama", "name": "member.nama" },
+            { "data": "status", "name": "status" },
+            { "data": "dibayar", "name": "dibayar" },
+            { "data": "transaksi_total", "name": "transaksi_total" },
+            { "data": "id", "name": "id" },
+        ],
+        "aoColumnDefs": [{
+            "aTargets": [0],
+            "mData": null,
+            "mRender": function(data, type, row, meta) {
+                return meta.row + meta.settings._iDisplayStart + 1;
+            }
+        },{
+            "aTargets": [6],
+            "mData": null,
+            "mRender": function(data, type, full) {
+                return `<div style="display: flex; justify-content: center; column-gap: 10px">
+                                                    <a href="{{ route('transaksi.show', ':id') }}"
+                                                        class="btn btn-primary d-inline-block">
+                                                        <i class="fa fa-eye"></i> Show</a>
+                                                    <a href="{{ route('transaksi.edit', ':id') }}"
+                                                        class="btn btn-warning d-inline-block"><i class="fa fa-edit"></i>
+                                                        Edit</a>
+                                                    <form action="{{ route('transaksi.destroy', ':id') }}" method="POST"
+                                                        class="d-inline-block">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger"><i
+                                                                class="fa fa-trash-o"></i> Hapus</button>
+                                                    </form>
+                                                </div>`.replaceAll(':id', data);
+            }
+        }]
+    });
+}
+    </script>
 @endsection

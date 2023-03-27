@@ -16,13 +16,12 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::query();
+        $users = User::query()->whereIn('role', ['admin', 'kasir', 'owner']);
         if ($request->ajax()) {
             return DataTables::eloquent($users)->toJson();
         }
         return view('admin.user.user', [
             'title' => 'Laundry | Table User',
-            'users' => $users,
             'active' => 'table',
         ]);
     }

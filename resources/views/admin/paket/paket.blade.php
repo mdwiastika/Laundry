@@ -20,7 +20,7 @@
                                 class="fa fa-plus
                             "></i> Tambah Data</a>
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table table-striped table-bordered table-hover" id="example">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -30,33 +30,6 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach ($pakets as $key => $paket)
-                                        <tr class="odd gradeX">
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $paket->nama_paket }}</td>
-                                            <td>Rp {{ number_format($paket->harga, 0, '.', ',') }}</td>
-                                            <td>{{ $paket->outlet->nama }}</td>
-                                            <td>
-                                                <div style="display: flex; justify-content: center; column-gap: 10px">
-                                                    <a href="{{ route('paket.show', $paket->id) }}"
-                                                        class="btn btn-primary d-inline-block">
-                                                        <i class="fa fa-eye"></i> Show</a>
-                                                    <a href="{{ route('paket.edit', $paket->id) }}"
-                                                        class="btn btn-warning d-inline-block"><i class="fa fa-edit"></i>
-                                                        Edit</a>
-                                                    <form action="{{ route('paket.destroy', $paket->id) }}" method="POST"
-                                                        class="d-inline-block">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger"><i
-                                                                class="fa fa-trash-o"></i> Hapus</button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
                             </table>
                         </div>
 
@@ -66,4 +39,48 @@
             </div>
         </div>
     </div>
+    <script>
+    window.onload = () => {
+      // cara pertama
+      $('#example').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{{ route('paket.index') }}',
+        "columns": [
+            { "data": "id", "name": "id" },
+            { "data": "nama_paket", "name": "nama_paket" },
+            { "data": "harga", "name": "harga" },
+            { "data": "outlet.nama", "name": "outlet.nama" },
+            { "data": "id", "name": "id" },
+        ],
+        "aoColumnDefs": [{
+            "aTargets": [0],
+            "mData": null,
+            "mRender": function(data, type, row, meta) {
+                return meta.row + meta.settings._iDisplayStart + 1;
+            }
+        },{
+            "aTargets": [4],
+            "mData": null,
+            "mRender": function(data, type, full) {
+                return `<div style="display: flex; justify-content: center; column-gap: 10px">
+                                                    <a href="{{ route('paket.show', ':id') }}"
+                                                        class="btn btn-primary d-inline-block">
+                                                        <i class="fa fa-eye"></i> Show</a>
+                                                    <a href="{{ route('paket.edit', ':id') }}"
+                                                        class="btn btn-warning d-inline-block"><i class="fa fa-edit"></i>
+                                                        Edit</a>
+                                                    <form action="{{ route('paket.destroy', ':id') }}" method="POST"
+                                                        class="d-inline-block">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger"><i
+                                                                class="fa fa-trash-o"></i> Hapus</button>
+                                                    </form>
+                                                </div>`.replaceAll(':id', data);
+            }
+        }]
+    });
+}
+  </script>
 @endsection

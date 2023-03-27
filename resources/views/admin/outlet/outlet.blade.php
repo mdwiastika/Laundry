@@ -31,31 +31,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($outlets as $key => $outlet)
-                                        <tr class="odd gradeX">
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $outlet->nama }}</td>
-                                            <td>{{ $outlet->alamat }}</td>
-                                            <td>{{ $outlet->tlp }}</td>
-                                            <td>
-                                                <div style="display: flex; justify-content: center; column-gap: 10px">
-                                                    <a href="{{ route('outlet.show', $outlet->id) }}"
-                                                        class="btn btn-primary d-inline-block">
-                                                        <i class="fa fa-eye"></i> Show</a>
-                                                    <a href="{{ route('outlet.edit', $outlet->id) }}"
-                                                        class="btn btn-warning d-inline-block"><i class="fa fa-edit"></i>
-                                                        Edit</a>
-                                                    <form action="{{ route('outlet.destroy', $outlet->id) }}" method="POST"
-                                                        class="d-inline-block">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger"><i
-                                                                class="fa fa-trash-o"></i> Hapus</button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach --}}
                                 </tbody>
                             </table>
                         </div>
